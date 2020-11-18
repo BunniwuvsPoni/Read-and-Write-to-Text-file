@@ -64,5 +64,56 @@ namespace Read_and_Write_to_Text_file
             // Launches the folder for easier testing
             await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
         }
+
+        private async void Write_to_text_file_buffer_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the sample file
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.GetFileAsync("sample.txt");
+
+            // Setup the buffer
+            var buffer = Windows.Security.Cryptography.CryptographicBuffer.ConvertStringToBinary(
+                "What fools these mortals be", Windows.Security.Cryptography.BinaryStringEncoding.Utf8);
+
+            // Write to the file
+            await Windows.Storage.FileIO.WriteBufferAsync(sampleFile, buffer);
+
+            // Test sample file
+            Access_sample_file();
+        }
+
+        private async void Write_to_text_file_stream_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the sample file
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.GetFileAsync("sample.txt");
+
+            // Open the file
+            var stream = await sampleFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite);
+
+            // Get an output stream
+            using (var outputStream = stream.GetOutputStreamAt(0))
+            {
+                // Write to the output stream
+                using (var dataWriter = new Windows.Storage.Streams.DataWriter(outputStream))
+                {
+                    dataWriter.WriteString("DataWriter has methods to write to various types, such as DataTimeOffset.");
+
+                    // Save the stream
+                    await dataWriter.StoreAsync();
+
+                    // Close the file
+                    await outputStream.FlushAsync();
+                }
+            }
+            stream.Dispose(); // Or use the stream variable (see previous code snippet) with a using statement as well.
+
+            // Test sample file
+            Access_sample_file();
+        }
     }
 }
