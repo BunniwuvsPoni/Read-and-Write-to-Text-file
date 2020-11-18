@@ -26,7 +26,15 @@ namespace Read_and_Write_to_Text_file
         {
             this.InitializeComponent();
         }
+        private async void Access_sample_file()
+        {
+            // Get sample file location
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
 
+            // Launches the folder for easier testing
+            await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
+        }
         private async void Create_text_file_Click(object sender, RoutedEventArgs e)
         {
             // Create sample file; replace if exists.
@@ -53,16 +61,6 @@ namespace Read_and_Write_to_Text_file
 
             // Test sample file
             Access_sample_file();
-        }
-
-        private async void Access_sample_file()
-        {
-            // Get sample file location
-            Windows.Storage.StorageFolder storageFolder =
-                Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            // Launches the folder for easier testing
-            await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
         }
 
         private async void Write_to_text_file_buffer_Click(object sender, RoutedEventArgs e)
