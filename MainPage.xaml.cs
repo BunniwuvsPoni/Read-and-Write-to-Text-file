@@ -149,5 +149,34 @@ namespace Read_and_Write_to_Text_file
                 this.Read_File_Contents_Buffer.Text = text;
             }
         }
+
+        private async void Read_text_file_stream_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the sample file
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.GetFileAsync("sample.txt");
+
+            // Open stream to sample file
+            var stream = await sampleFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
+
+            // Get size of the stream for user later
+            ulong size = stream.Size;
+
+            // Get the input stream
+            using (var inputStream = stream.GetInputStreamAt(0))
+            {
+                // Read the stream
+                using (var dataReader = new Windows.Storage.Streams.DataReader(inputStream))
+                {
+                    uint numBytesLoaded = await dataReader.LoadAsync((uint)size);
+                    string text = dataReader.ReadString(numBytesLoaded);
+
+                    // Show contents of file
+                    this.Read_File_Contents_Stream.Text = text;
+                }
+            }
+        }
     }
 }
