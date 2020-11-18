@@ -36,6 +36,31 @@ namespace Read_and_Write_to_Text_file
                 await storageFolder.CreateFileAsync("sample.txt",
                     Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
+            // Test sample file
+            Access_sample_file();
+        }
+
+        private async void Write_to_text_file_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the sample file
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.GetFileAsync("sample.txt");
+
+            // Write text to the sample file
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, "Swift as a shadow");
+
+            // Test sample file
+            Access_sample_file();
+        }
+
+        private async void Access_sample_file()
+        {
+            // Get sample file location
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+
             // Launches the folder for easier testing
             await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
         }
