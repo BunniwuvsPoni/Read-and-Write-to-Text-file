@@ -124,6 +124,9 @@ namespace Read_and_Write_to_Text_file
 
             // Read sample file
             string text = await Windows.Storage.FileIO.ReadTextAsync(sampleFile);
+
+            // Show contents of file
+            this.Read_File_Contents.Text = text;
         }
     }
 }
