@@ -115,5 +115,17 @@ namespace Read_and_Write_to_Text_file
             // Test sample file
             Access_sample_file();
         }
+
+        private async void Read_text_file_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the sample file
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.GetFileAsync("sample.txt");
+
+            // Read sample file
+            string text = await Windows.Storage.FileIO.ReadTextAsync(sampleFile);
+        }
     }
 }

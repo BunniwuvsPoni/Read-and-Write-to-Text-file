@@ -14,6 +14,7 @@
         <Button x:Name="Write_to_text_file_buffer" Content="Write to text file - buffer" Height="119" Margin="92,381,0,0" Width="185" Click="Write_to_text_file_buffer_Click" VerticalAlignment="Top"/>
         <Button x:Name="Write_to_text_file_stream" Content="Write to text file - stream" Height="119" Margin="92,536,0,0" VerticalAlignment="Top" Width="185" Click="Write_to_text_file_stream_Click"/>
         <TextBlock x:Name="Write_File_Text_Block" HorizontalAlignment="Left" Height="101" Margin="92,738,0,0" Text="Note: Whenever possible, use the FileIO write methods. This is because it is much simpler and uses one line of code." TextWrapping="Wrap" VerticalAlignment="Top" Width="185" SelectionChanged="Write_File_Text_Block_SelectionChanged"/>
+        <Button x:Name="Read_text_file" Content="Read text file" Height="119" Margin="356,74,0,0" VerticalAlignment="Top" Width="185" Click="Read_text_file_Click"/>
 
     </Grid>
 </Page>
