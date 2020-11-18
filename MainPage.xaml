@@ -20,6 +20,7 @@
         <TextBox x:Name="Read_File_Contents_Buffer" HorizontalAlignment="Left" Height="100" Margin="646,391,0,0" Text="Sample file contents" TextWrapping="Wrap" VerticalAlignment="Top" Width="464"/>
         <Button x:Name="Read_text_file_buffer_Copy" Content="Read text file - stream" Height="119" Margin="356,536,0,0" VerticalAlignment="Top" Width="185" Click="Read_text_file_stream_Click"/>
         <TextBox x:Name="Read_File_Contents_Stream" HorizontalAlignment="Left" Height="100" Margin="646,536,0,0" Text="Sample file contents" TextWrapping="Wrap" VerticalAlignment="Top" Width="464"/>
+        <TextBlock x:Name="Buffer_vs_Stream_Text_Block" HorizontalAlignment="Left" Height="93" Margin="391,723,0,0" Text="Stream is read directly from the file. Buffer is read from the copy in the memory. Buffer can be better to avoid conflicts with read and write operations. Steam might be better to have exclusive access to the single source of truth. FileIO is probably the easiest to use..." TextWrapping="Wrap" VerticalAlignment="Top" Width="692"/>
 
     </Grid>
 </Page>
