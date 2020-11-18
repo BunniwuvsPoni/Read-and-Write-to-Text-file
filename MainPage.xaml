@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Button x:Name="Write_to_text_file" Content="Write to text file" Height="119" Margin="92,71,0,0" VerticalAlignment="Top" Width="185" Click="Write_to_text_file_Click"/>
 
     </Grid>
 </Page>

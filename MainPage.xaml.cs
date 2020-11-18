@@ -26,5 +26,19 @@ namespace Read_and_Write_to_Text_file
         {
             this.InitializeComponent();
         }
+
+        private async void Write_to_text_file_Click(object sender, RoutedEventArgs e)
+        {
+            // Create sample file; replace if exists.
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.CreateFileAsync("sample.txt",
+                    Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+            // Launches the folder for easier testing
+            await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
+
+        }
     }
 }
